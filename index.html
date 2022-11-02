@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <html>
-<body>
-
-
-  <div id="demo"></div>
-
-  <script>
-   function getOS() {
+<body onload="getOS()">
+    <script>
+      function getOS() {
         var userAgent = window.navigator.userAgent,
           platform = window.navigator.platform,
           macosPlatforms = ["Macintosh", "MacIntel", "MacPPC", "Mac68K"],
@@ -26,11 +22,16 @@
           os = "Linux";
         }
 
-        return os;
+        if (os == "Android") {
+          return (window.location =
+            "https://play.google.com/store/apps/details?id=com.mobile.legends");
+        } else if (os == "iOS") {
+          return (window.location =
+            "https://apps.apple.com/id/app/apple-store/id375380948?l=id");
+        } else {
+          return (window.location = "https://fightoflegends.co.id/");
+        }
       }
-
-      alert(getOS());
-  </script>
-
-</body>
+    </script>
+  </body>
 </html>
