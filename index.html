@@ -6,16 +6,30 @@
   <div id="demo"></div>
 
   <script>
-    let text = "<p>Browser CodeName: " + navigator.appCodeName + "</p>" +
-    "<p>Browser Name: " + navigator.appName + "</p>" +
-    "<p>Browser Version: " + navigator.appVersion + "</p>" +
-    "<p>Cookies Enabled: " + navigator.cookieEnabled + "</p>" +
-    "<p>Browser Language: " + navigator.language + "</p>" +
-    "<p>Browser Online: " + navigator.onLine + "</p>" +
-    "<p>Platform: " + navigator.platform + "</p>" +
-    "<p>User-agent header: " + navigator.userAgent + "</p>";
+   function getOS() {
+        var userAgent = window.navigator.userAgent,
+          platform = window.navigator.platform,
+          macosPlatforms = ["Macintosh", "MacIntel", "MacPPC", "Mac68K"],
+          windowsPlatforms = ["Win32", "Win64", "Windows", "WinCE"],
+          iosPlatforms = ["iPhone", "iPad", "iPod"],
+          os = null;
 
-    document.getElementById("demo").innerHTML = text;
+        if (macosPlatforms.indexOf(platform) !== -1) {
+          os = "Mac OS";
+        } else if (iosPlatforms.indexOf(platform) !== -1) {
+          os = "iOS";
+        } else if (windowsPlatforms.indexOf(platform) !== -1) {
+          os = "Windows";
+        } else if (/Android/.test(userAgent)) {
+          os = "Android";
+        } else if (!os && /Linux/.test(platform)) {
+          os = "Linux";
+        }
+
+        return os;
+      }
+
+      alert(getOS());
   </script>
 
 </body>
